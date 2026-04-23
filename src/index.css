@@ -128,7 +128,7 @@ button{font-family:inherit}
 /* ── Forms ───────────────────────────────────────────────────────────────── */
 .field{margin-bottom:16px}
 .field label{display:block;font-size:11px;font-weight:700;color:var(--t2);margin-bottom:7px;text-transform:uppercase;letter-spacing:.5px}
-.inp{width:100%;padding:12px 16px;border:1.5px solid var(--bd);border-radius:var(--r);font-size:14px;font-family:inherit;background:var(--s2);color:var(--tx);transition:all .2s;outline:none;line-height:1.5}
+.inp{width:100%;padding:12px 16px;border:1.5px solid var(--bd);border-radius:var(--r);font-size:14px;font-family:inherit;background:var(--sf);color:var(--tx);transition:all .2s;outline:none;line-height:1.5}
 .inp::placeholder{color:var(--t3)}
 .inp:focus{border-color:var(--ac);box-shadow:0 0 0 3px var(--al)}
 .inp.err{border-color:var(--rd);box-shadow:0 0 0 3px var(--rl)}
@@ -222,6 +222,19 @@ textarea.inp{resize:vertical;min-height:180px}
 @keyframes glow-pulse{0%,100%{opacity:.6}50%{opacity:1}}
 @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
 @keyframes slide-in{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}
+@keyframes xpToast{0%{opacity:0;transform:translateX(-50%) translateY(6px) scale(.88)}15%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}70%{opacity:1;transform:translateX(-50%) translateY(-10px) scale(1)}100%{opacity:0;transform:translateX(-50%) translateY(-22px) scale(.95)}}
+@keyframes lvlUp{0%{opacity:0;transform:scale(.7)}60%{transform:scale(1.06)}100%{opacity:1;transform:scale(1)}}
+@keyframes heartShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+@keyframes achIn{0%{opacity:0;transform:translateX(-110%) scale(.88)}55%{opacity:1;transform:translateX(5%) scale(1.02)}75%{transform:translateX(-2%) scale(.99)}100%{opacity:1;transform:translateX(0) scale(1)}}
+@keyframes achOut{0%{opacity:1;transform:translateX(0) scale(1)}20%{transform:translateX(6%) scale(1.02)}100%{opacity:0;transform:translateX(-115%) scale(.9)}}
+@keyframes achIconPop{0%{opacity:0;transform:scale(.4) rotate(-15deg)}65%{transform:scale(1.18) rotate(5deg)}85%{transform:scale(.96)}100%{opacity:1;transform:scale(1) rotate(0deg)}}
+@keyframes achBadgePop{0%{opacity:0;transform:scale(.3) rotate(20deg)}65%{transform:scale(1.15) rotate(-4deg)}100%{opacity:1;transform:scale(1) rotate(0deg)}}
+@keyframes achProgress{0%{width:100%}100%{width:0%}}
+@keyframes confettiFall{0%{transform:translateY(-10px) rotate(0deg);opacity:1}100%{transform:translateY(105vh) rotate(720deg);opacity:0}}
+@keyframes barGrow{from{width:0!important}}
+@keyframes celebIn{0%{opacity:0;transform:scale(.7)}60%{transform:scale(1.04)}100%{opacity:1;transform:scale(1)}}
+@keyframes tutorDot{0%,80%,100%{transform:translateY(0);opacity:.4}40%{transform:translateY(-5px);opacity:1}}
+@keyframes cmdIn{0%{opacity:0;transform:translateY(-12px) scale(.97)}100%{opacity:1;transform:translateY(0) scale(1)}}
 
 /* ── Gradient text utilities ─────────────────────────────────────────────── */
 .grad-text{background:linear-gradient(135deg,#a09af7 0%,#f97316 55%,#fbbf24 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}

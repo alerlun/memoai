@@ -91,15 +91,15 @@ export default function PracticeTestView({ set, onSaveTest }) {
               {q.options.map((opt, j) => {
                 const isSelected = answers[i] === j
                 const isCorrect = j === q.correct
-                let bg = 'var(--sf)', border = 'var(--bd)', color = 'var(--tx)'
+                let bg = 'var(--s2)', border = 'var(--bd2)', color = 'var(--tx)'
                 if (submitted) {
-                  if (isCorrect) { bg = 'var(--gl)'; border = 'var(--gn)'; color = '#166534' }
-                  else if (isSelected && !isCorrect) { bg = 'var(--rl)'; border = 'var(--rd)'; color = '#991b1b' }
-                } else if (isSelected) { bg = 'var(--al)'; border = 'var(--ac)' }
+                  if (isCorrect) { bg = 'var(--gl)'; border = 'var(--gn)'; color = 'var(--gn)' }
+                  else if (isSelected && !isCorrect) { bg = 'var(--rl)'; border = 'var(--rd)'; color = 'var(--rd)' }
+                } else if (isSelected) { bg = 'var(--al)'; border = 'var(--ac)'; color = 'var(--ac)' }
                 return (
                   <button key={j} onClick={() => !submitted && setAnswers(a => ({ ...a, [i]: j }))}
                     style={{ background: bg, border: `2px solid ${border}`, borderRadius: 'var(--rs)', padding: '10px 14px', cursor: submitted ? 'default' : 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 10, textAlign: 'left', width: '100%' }}>
-                    <div style={{ width: 24, height: 24, borderRadius: '50%', background: submitted && isCorrect ? 'var(--gn)' : submitted && isSelected ? 'var(--rd)' : isSelected ? 'var(--ac)' : 'var(--s2)', color: (submitted && (isCorrect || isSelected)) || isSelected ? '#fff' : 'var(--t2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 800, flexShrink: 0 }}>{LABELS[j]}</div>
+                    <div style={{ width: 24, height: 24, borderRadius: '50%', background: submitted && isCorrect ? 'var(--gn)' : submitted && isSelected ? 'var(--rd)' : isSelected ? 'var(--ac)' : 'var(--s3)', color: (submitted && (isCorrect || isSelected)) || isSelected ? '#fff' : 'var(--t2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 800, flexShrink: 0 }}>{LABELS[j]}</div>
                     <span style={{ fontSize: 13, color }}>{opt}</span>
                   </button>
                 )
@@ -112,14 +112,23 @@ export default function PracticeTestView({ set, onSaveTest }) {
               {[true, false].map(val => {
                 const isSelected = answers[i] === val
                 const isCorrect = val === q.correct
-                let bg = 'var(--sf)', border = 'var(--bd)'
+                let bg, border, color
                 if (submitted) {
-                  if (isCorrect) { bg = 'var(--gl)'; border = 'var(--gn)' }
-                  else if (isSelected) { bg = 'var(--rl)'; border = 'var(--rd)' }
-                } else if (isSelected) { bg = 'var(--al)'; border = 'var(--ac)' }
+                  if (isCorrect) { bg = 'var(--gl)'; border = 'var(--gn)'; color = 'var(--gn)' }
+                  else if (isSelected && !isCorrect) { bg = 'var(--rl)'; border = 'var(--rd)'; color = 'var(--rd)' }
+                  else { bg = 'var(--s2)'; border = 'var(--bd)'; color = 'var(--t3)' }
+                } else if (isSelected) {
+                  bg = val ? 'var(--gl)' : 'var(--rl)'
+                  border = val ? 'var(--gn)' : 'var(--rd)'
+                  color = val ? 'var(--gn)' : 'var(--rd)'
+                } else {
+                  bg = val ? 'rgba(74,222,128,.12)' : 'rgba(248,113,113,.12)'
+                  border = val ? 'rgba(74,222,128,.35)' : 'rgba(248,113,113,.35)'
+                  color = val ? 'var(--gn)' : 'var(--rd)'
+                }
                 return (
                   <button key={String(val)} onClick={() => !submitted && setAnswers(a => ({ ...a, [i]: val }))}
-                    style={{ flex: 1, padding: '12px', borderRadius: 'var(--r)', border: `2px solid ${border}`, background: bg, fontWeight: 700, cursor: submitted ? 'default' : 'pointer', fontFamily: 'inherit', fontSize: 14 }}>
+                    style={{ flex: 1, padding: '12px', borderRadius: 'var(--r)', border: `2px solid ${border}`, background: bg, color, fontWeight: 700, cursor: submitted ? 'default' : 'pointer', fontFamily: 'inherit', fontSize: 14, transition: 'all .15s' }}>
                     {val ? '✓ True' : '✗ False'}
                   </button>
                 )

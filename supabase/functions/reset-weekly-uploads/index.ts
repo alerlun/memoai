@@ -22,9 +22,10 @@ serve(async (req) => {
     .from('profiles')
     .update({
       uploads_this_week: 0,
+      xp_this_week: 0,
       week_reset_at: new Date().toISOString(),
     })
-    .gte('uploads_this_week', 1) // only update rows that need it
+    .gte('id', '00000000-0000-0000-0000-000000000000') // update all rows
 
   if (error) {
     console.error('Reset error:', error)

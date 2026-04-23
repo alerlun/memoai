@@ -6,17 +6,18 @@ import logoSrc from '../assets/logo.png'
 const NAV = [
   {
     key: 'home',
-    emoji: '🏠',
     svgPath: 'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z',
   },
   {
     key: 'upload',
-    emoji: '⚡',
     svgPath: 'M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z',
   },
   {
+    key: 'achievements',
+    svgPath: 'M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z',
+  },
+  {
     key: 'settings',
-    emoji: '⚙️',
     svgPath: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z',
   },
 ]
@@ -30,9 +31,10 @@ export default function Layout({ children, active }) {
   const first = name.split(' ')[0]
 
   const items = [
-    { key: 'home',     label: t('home'),     path: '/',         emoji: '🏠' },
-    { key: 'upload',   label: t('upload'),   path: '/upload',   emoji: '⚡' },
-    { key: 'settings', label: t('profile'),  path: '/settings', emoji: '⚙️' },
+    { key: 'home',         label: t('home'),         path: '/',              emoji: '🏠' },
+    { key: 'upload',       label: t('upload'),       path: '/upload',        emoji: '⚡' },
+    { key: 'achievements', label: 'Achievements',    path: '/achievements',  emoji: '🏆' },
+    { key: 'settings',     label: t('profile'),      path: '/settings',      emoji: '⚙️' },
   ]
 
   return (

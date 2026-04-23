@@ -89,9 +89,10 @@ Rules:
 - Wrong answers must be genuinely plausible, never obviously wrong
 - Write proper questions (Who/What/When/Which/Why/How). No fill-in-the-blank.
 - Vary difficulty: 2 easy, 4 medium, 2 hard
+- "correct" is a ZERO-BASED index: 0=first option, 1=second option, 2=third option, 3=fourth option
 
-Return ONLY JSON array:
-[{"q":"Question?","options":["A","B","C","D"],"correct":2,"explanation":"One sentence why correct.","difficulty":"medium"}]`
+Return ONLY JSON array (example — "Paris" is correct so correct=0):
+[{"q":"Capital of France?","options":["Paris","London","Berlin","Rome"],"correct":0,"explanation":"Paris has been France's capital since 987.","difficulty":"easy"}]`
   const raw = await callOpenAI(prompt, 2500)
   const parsed = JSON.parse(raw)
   return parsed.map(q => ({
@@ -111,11 +112,13 @@ CRITICAL: Detect the language of the CONTENT and write everything in that exact 
 CONTENT: ${ctx}
 
 Mix: 4 multiple choice, 3 true/false, 3 short answer.
+- For multiple_choice: "correct" is a ZERO-BASED index (0=first option, 1=second, 2=third, 3=fourth)
+- For true_false: "correct" is boolean true or false
 
-Return ONLY JSON array:
+Return ONLY JSON array (example — "Berlin" is correct so correct=2):
 [
-  {"type":"multiple_choice","q":"Question?","options":["A","B","C","D"],"correct":1,"explanation":"Why."},
-  {"type":"true_false","q":"Statement.","correct":true,"explanation":"Why true/false."},
+  {"type":"multiple_choice","q":"Capital of Germany?","options":["Paris","London","Berlin","Rome"],"correct":2,"explanation":"Berlin is Germany's capital."},
+  {"type":"true_false","q":"The Earth orbits the Sun.","correct":true,"explanation":"Earth orbits the Sun, not vice versa."},
   {"type":"short_answer","q":"Question?","sampleAnswer":"Brief model answer.","keyPoints":["point1","point2"]}
 ]`
   const raw = await callOpenAI(prompt, 2500)
@@ -158,6 +161,20 @@ Give a clear, friendly explanation in 3-4 sentences:
 
 Return only the explanation text, no labels or formatting.`
   return callOpenAI(prompt, 400)
+}
+
+export async function generateMnemonic(question, answer) {
+  const prompt = `A student keeps forgetting this flashcard. Create ONE short, vivid memory trick to make the answer stick forever.
+CRITICAL: Detect the language of the question/answer and respond in that exact same language.
+
+Question: ${question}
+Answer: ${answer}
+
+Use a mnemonic, acronym, analogy, rhyme, or mini-story — whichever is most memorable.
+Be creative, concrete and slightly silly (that helps recall). Max 35 words.
+
+Return only the memory trick text, nothing else.`
+  return callOpenAI(prompt, 120)
 }
 
 export async function generateTitle(text) {
